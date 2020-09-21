@@ -1,0 +1,10 @@
+E:\other\AngularJs\MyProject\AnPhu\idn.AnPhu\idn.AnPhu.Utils\bin\Debug\idn.AnPhu.Utils.dll
+E:\other\AngularJs\MyProject\AnPhu\idn.AnPhu\idn.AnPhu.Utils\bin\Debug\idn.AnPhu.Utils.pdb
+E:\other\AngularJs\MyProject\AnPhu\idn.AnPhu\idn.AnPhu.Utils\obj\Debug\idn.AnPhu.Utils.csproj.CoreCompileInputs.cache
+E:\other\AngularJs\MyProject\AnPhu\idn.AnPhu\idn.AnPhu.Utils\obj\Debug\idn.AnPhu.Utils.dll
+E:\other\AngularJs\MyProject\AnPhu\idn.AnPhu\idn.AnPhu.Utils\obj\Debug\idn.AnPhu.Utils.pdb
+D:\AnPhu2\AnPhu\idn.AnPhu\idn.AnPhu.Utils\bin\Debug\idn.AnPhu.Utils.dll
+D:\AnPhu2\AnPhu\idn.AnPhu\idn.AnPhu.Utils\bin\Debug\idn.AnPhu.Utils.pdb
+D:\AnPhu2\AnPhu\idn.AnPhu\idn.AnPhu.Utils\obj\Debug\idn.AnPhu.Utils.csprojAssemblyReference.cache
+D:\AnPhu2\AnPhu\idn.AnPhu\idn.AnPhu.Utils\obj\Debug\idn.AnPhu.Utils.dll
+D:\AnPhu2\AnPhu\idn.AnPhu\idn.AnPhu.Utils\obj\Debug\idn.AnPhu.Utils.pdb

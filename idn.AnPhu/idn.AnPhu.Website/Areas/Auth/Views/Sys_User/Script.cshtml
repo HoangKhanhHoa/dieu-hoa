@@ -1,0 +1,32 @@
+﻿<script src="~/Areas/Auth/Scripts/js/CommonUtils.js"></script>
+<script type="text/javascript">
+    function checkForm() {
+        var listToastr = [];
+        var fullName = $('#FullName').val();
+        var userCode = $('#UserCode').val();
+
+        if (commonUtils.isNullOrEmpty(userCode)) {
+            var objToastr = {
+                ToastrType: 'error',
+                ToastrMessage: 'Mã người dùng không được trống'
+            };
+            listToastr.push(objToastr);
+        }
+
+        if (commonUtils.isNullOrEmpty(fullName)) {
+            var objToastr1 = {
+                ToastrType: 'error',
+                ToastrMessage: 'Tên người dùng không được trống'
+            };
+            listToastr.push(objToastr1);
+        }
+
+        if (listToastr !== undefined && listToastr !== null && listToastr.length > 0) {
+            commonUtils.showToastr(listToastr);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

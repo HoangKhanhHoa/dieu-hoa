@@ -1,0 +1,76 @@
+﻿@model Manufacters
+@{
+    var title = "Tạo mới danh mục nhà sản xuất";
+}
+
+<div class="page-content">
+    <div class="panel-heading">
+        <h1 class="panel-title">@MvcHtmlString.Create("Tạo mới danh mục nhà sản xuất")</h1>
+    </div>
+    @using (Html.BeginForm("Create", "Manufacter", FormMethod.Post, new { id = "manageForm", @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row" style="padding-top:50px">
+            <div class="col-lg-6 col-xs-12 col-lg-offset-2">
+                <div class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label no-padding-right"> Tên nhà sản xuất <span style="color:red">*</span> </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="ManufactName" name="ManufactName" class="col-sm-12 ManufactName" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label no-padding-right"> Trạng thái </label>
+                        <label class="col-sm-8">
+                            <input type="checkbox" id="IsActive" name="IsActive" class="ace ace-switch IsActive" value="true" />
+                            <span class="lbl" style="margin-top: 5px;"></span>
+                            <input type="hidden" name="IsActive" value="false" />
+                        </label>
+                    </div>
+                    <div class="row">
+                        <a id="btn_submit_save" class="btn btn-sm btn-success" href="javascript:;" title="@S("Save")">
+                            <span style="font-size:15px"><i class="fa fa-save"></i> @S("Save")</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts{
+    @Html.Partial("ScriptManufacter");
+    @*breadcrumb*@
+    <script type="text/javascript">
+        var parents = new Array();
+        parents.push('@Url.ActionLocalized("Index", "Manufacter", new {area = "Auth"})');
+        parents.push('');
+        var parentsText = new Array();
+        parentsText.push('@MvcHtmlString.Create("Danh sách nhà sản xuất")');
+        parentsText.push("@MvcHtmlString.Create(title)");
+        setAdminCurrentTag(parents, parentsText);
+    </script>
+    <script type="text/javascript">
+        processAjaxForm($('#manageForm'), function (response) {
+            processAjaxFormResult(response);
+
+        });
+    </script>
+    @*Active Menu*@
+    <script type="text/javascript">
+        setAdminCurrentUrl('@Url.ActionLocalized("Create", "Manufacter", new {area = "Auth"})');
+    </script>
+
+    <script type="text/javascript">
+        $('#btn_submit_save').click(function () {
+            var check = checkFormManufacter();
+            if (check) {
+                $("#manageForm").attr("action", '@Url.ActionLocalized("Create")').submit();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,59 @@
+﻿
+<div id="sidebar" class="sidebar responsive ace-save-state">
+    <script type="text/javascript">
+                try {
+                    ace.settings.loadState('sidebar');
+                } catch (e) { }
+    </script>
+
+    <ul class="nav nav-list">
+        <li class="">
+            <a href="javascrip:;" class="dropdown-toggle">
+                <i class="menu-icon fa fa-briefcase"></i>
+                <span class="menu-text"> Kho TT xác thực </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li><a href="#">abc</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="javascrip:;" class="dropdown-toggle">
+                <i class="menu-icon fa fa-briefcase"></i>
+                <span class="menu-text"> Quản trị người dùng </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li><a href="@Url.ActionLocalized("Index", "Sys_User")">Danh sách người dùng</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="javascrip:;" class="dropdown-toggle">
+                <i class="menu-icon fa fa-briefcase"></i>
+                <span class="menu-text"> Khu vực </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li><a href="@Url.ActionLocalized("Index", "LocationDiscount")">Danh sách tỉnh/thành phố</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="javascrip:;" class="dropdown-toggle">
+                <i class="menu-icon fa fa-briefcase"></i>
+                <span class="menu-text"> Nhà sản xuất </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li><a href="@Url.ActionLocalized("Index", "Manufacter")">Thông tin nhà sản xuất</a></li>
+            </ul>
+        </li>
+    </ul><!-- /.nav-list -->
+
+    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+        <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+    </div>
+</div>

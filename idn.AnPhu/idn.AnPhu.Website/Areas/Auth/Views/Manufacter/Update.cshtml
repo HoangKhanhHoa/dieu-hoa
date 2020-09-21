@@ -1,0 +1,96 @@
+﻿@model Manufacters
+@{
+    const string title = "Cập nhật danh sách";
+    ViewBag.Title = title;
+}
+
+<style>
+    .btn_avar {
+        font-size: 14px;
+        font-weight: 600;
+    }
+</style>
+
+<head>
+    <link rel="stylesheet" href="~/Areas/Auth/Content/assets/css/select2.min.css" />
+</head>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Cập nhật thông tin nhà sản xuất
+        </h1>
+    </div>
+    <div class="row">
+        <a id="btn_submit_save" class="btn btn-sm btn-success" href="javascript:;" title="@S("Save")">
+            <span style="font-size:15px"><i class="fa fa-save"></i> @S("Save")</span>
+        </a>
+    </div>
+    @using (Html.BeginForm("Update", "Manufacter", FormMethod.Post, new { id = "manageForm", @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row" style="padding-top:50px">
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right"> Mã nhà sản xuất <span style="color:red">*</span> </label>
+
+                            <div class="col-sm-8">
+                                <input type="text" id="ManufactId" name="ManufactId" class="col-sm-12 ManufactId" required value="@MvcHtmlString.Create(CUtils.StrValue(Model.ManufactId))" readonly />
+                            </div>
+                        </div>
+                        <label class="col-sm-4 control-label no-padding-right"> Tên nhà sản xuất <span style="color:red">*</span> </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="ManufactName" name="ManufactName" class="col-sm-12 ManufactName" required value="@MvcHtmlString.Create(CUtils.StrValue(Model.ManufactName))" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @{var check = Model.IsActive ? "checked" : "";}
+                        <label class="col-sm-3 control-label no-padding-right ">Trạng thái</label>
+                        <label class="col-sm-9">
+                            <input id="IsActive" name="IsActive" class="ace ace-switch" type="checkbox" value="true" @check />
+                            <span class="lbl"></span>
+                            <input type="hidden" name="IsActive" value="false" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts{
+    @Html.Partial("ScriptManufacter");
+    <script type="text/javascript">
+        var parents = new Array();
+        parents.push('@Url.ActionLocalized("Index", "Manufacter", new {area = "Auth"})');
+        parents.push('');
+        var parentsText = new Array();
+        parentsText.push('@MvcHtmlString.Create("Danh sách nhà sản xuất")');
+        parentsText.push("@MvcHtmlString.Create(title)");
+        setAdminCurrentTag(parents, parentsText);
+    </script>
+    @*Active Menu*@
+    <script type="text/javascript">
+        setAdminCurrentUrl('@Url.ActionLocalized("Update", "Manufacter", new {area = "Auth"})');
+    </script>
+    <script type="text/javascript">
+        //trả từ json ra
+        processAjaxForm($('#manageForm'), function (response) {
+            processAjaxFormResult(response);
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#btn_submit_save').click(function () {
+            var check = checkFormManufacter();
+            if (check) {
+                $("#manageForm").attr("action", '@Url.ActionLocalized("Update")').submit();
+            }
+        });
+    </script>
+}

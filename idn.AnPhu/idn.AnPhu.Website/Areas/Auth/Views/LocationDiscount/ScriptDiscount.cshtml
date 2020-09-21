@@ -1,0 +1,23 @@
+﻿<script src="~/Areas/Auth/Scripts/js/CommonUtils.js"></script>
+<script type="text/javascript">
+    function checkFormDiscount(){
+        var listToastr = [];
+        var locationDiscountName = $('#LocationDiscountName').val();
+
+        if (commonUtils.isNullOrEmpty(locationDiscountName)) {
+            var objToatr = {
+                ToastrType: 'error',
+                ToastrMessage: 'Tên tỉnh / thành phố không được trống'
+            };
+            listToastr.push(objToatr);
+        }
+
+        if (listToastr !== undefined && listToastr !== null && listToastr.length > 0) {
+            commonUtils.showToastr(listToastr);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

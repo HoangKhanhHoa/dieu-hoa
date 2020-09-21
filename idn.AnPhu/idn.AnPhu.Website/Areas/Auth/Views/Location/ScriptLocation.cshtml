@@ -1,0 +1,23 @@
+﻿<script src="~/Areas/Auth/Scripts/js/CommonUtils.js"></script>
+<script type="text/javascript">
+    function checkFormLocation(){
+        var listToastr = [];
+        var locationName = $('#LocationName').val();
+
+        if (commonUtils.isNullOrEmpty(locationName)) {
+            var objToatr = {
+                ToastrType: 'error',
+                ToastrMessage: 'Tên quận/huyện không được trống'
+            };
+            listToastr.push(objToatr);
+        }
+
+        if (listToastr !== undefined && listToastr !== null && listToastr.length > 0) {
+            commonUtils.showToastr(listToastr);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

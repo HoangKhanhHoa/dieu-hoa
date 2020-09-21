@@ -1,0 +1,23 @@
+﻿<script src="~/Areas/Auth/Scripts/js/CommonUtils.js"></script>
+<script type="text/javascript">
+    function checkFormManufacter() {
+        var listToastr = [];
+        var manufactName = $('#ManufactName').val();
+
+        if (commonUtils.isNullOrEmpty(manufactName)) {
+            var objToatr = {
+                ToastrType: 'error',
+                ToastrMessage: 'Tên nhà sản xuất không được trống'
+            };
+            listToastr.push(objToatr);
+        }
+
+        if (listToastr !== undefined && listToastr !== null && listToastr.length > 0) {
+            commonUtils.showToastr(listToastr);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

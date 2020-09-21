@@ -1,0 +1,196 @@
+﻿@model Sys_User
+@{
+    var title = "Chỉnh sửa người dùng";
+}
+
+<style>
+    .btn_avar {
+        font-size: 14px;
+        font-weight: 600;
+    }
+</style>
+
+<head>
+    <link rel="stylesheet" href="~/Areas/Auth/Content/assets/css/select2.min.css" />
+</head>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Sửa người dùng
+        </h1>
+    </div>
+    <div class="row">
+        <a id="btn_submit_save" class="btn btn-sm btn-success" href="javascript:;" title="@S("Save")">
+            <span style="font-size:15px"><i class="fa fa-save"></i> @S("Save")</span>
+        </a>
+    </div>
+    @using (Html.BeginForm("Update", "Sys_User", FormMethod.Post, new { id = "manageForm", @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row" style="padding-top:50px">
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label no-padding-right"> @S("UserCode") <span style="color:red">*</span> </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="UserCode" name="UserCode" class="col-xs-10 col-sm-5 col-lg-10 UserCode" required value="@MvcHtmlString.Create(CUtils.StrValue(Model.UserCode))" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label no-padding-right"> @S("FullName")  <span style="color:red">*</span> </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="FullName" name="FullName" class="col-xs-10 col-sm-5 col-lg-10 FullName" required value="@MvcHtmlString.Create(CUtils.StrValue(Model.FullName))" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label no-padding-right"> @S("Email") <span style="color:red">*</span> </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="Email" name="Email" class="col-xs-10 col-sm-5 col-lg-10 Email" required value="@MvcHtmlString.Create(CUtils.StrValue(Model.Email))" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label no-padding-right"> @S("PhoneNo") </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="PhoneNo" name="PhoneNo" class="col-xs-10 col-sm-5 col-lg-10 PhoneNo" required value="@MvcHtmlString.Create(CUtils.StrValue(Model.PhoneNo))" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="form-horizontal" role="form">
+                    <div class="form-group">
+                        @{ var sex = CUtils.StrValue(Model.Sex); }
+                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="cars">@S("Sex")</label>
+                        <div class="col-xs-12 col-sm-9">
+                            <select class="col-xs-12 col-sm-12 Sex" name="Sex" id="Sex">
+                                <option value=""></option>
+                                <option value="MALE" @(sex.Equals("MALE") ? "selected" : "")>Nam</option>
+                                <option value="FEMALE" @(sex.Equals("FEMALE") ? "selected" : "")>Nữ</option>
+                                <option value="OTHER" @(sex.Equals("OTHER") ? "selected" : "")>Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            @{var checkIsSysAdmin = Model.IsSysAdmin ? "checked" : "";}
+                            <label class="col-sm-3 control-label no-padding-right ">@S("IsSysAdmin")</label>
+                            <label class="col-sm-9">
+                                <input id="isSysAdmin" name="isSysAdmin" class="ace ace-switch" type="checkbox" value="true" @checkIsSysAdmin />
+                                <span class="lbl" style="margin-top: 10px"></span>
+                                <input type="hidden" name="IsSysAdmin" value="false" />
+                            </label>
+                        </div>*@
+                    <div class="form-group">
+                        @{var check = Model.FlagActive ? "checked" : "";}
+                        <label class="col-sm-3 control-label no-padding-right ">@S("IsActive")</label>
+                        <label class="col-sm-9">
+                            <input id="FlagActive" name="FlagActive" class="ace ace-switch" type="checkbox" value="true" @check />
+                            <span class="lbl"></span>
+                            <input type="hidden" name="FlagActive" value="false" />
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        var parents = new Array();
+        parents.push('@Url.ActionLocalized("Index", "Sys_User", new {area = "Auth"})');
+        parents.push('');
+        var parentsText = new Array();
+        parentsText.push('@MvcHtmlString.Create("Quản lý người dùng")');
+        parentsText.push("@MvcHtmlString.Create(title)");
+        setAdminCurrentTag(parents, parentsText);
+    </script>
+
+    <script type="text/javascript">
+        processAjaxForm($('#manageForm'), function (response) {
+            processAjaxFormResult(response);
+
+        });
+    </script>
+    <script type="text/javascript">
+        setAdminCurrentUrl('@Url.ActionLocalized("Index", "Sys_User", new {area = "Auth"})');
+    </script>
+
+    <script type="text/javascript">
+        $('#btn_submit_save').click(function () {
+            $("#manageForm").attr("action", '@Url.ActionLocalized("Update")').submit();
+        });
+    </script>
+
+
+    @*<script type="text/javascript">
+        jQuery(function ($) {
+            $('.input-daterange').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                format: 'yyyy-mm-dd'
+            })//show datepicker when clicking on the icon
+                .next().on(ace.click_event, function () {
+                    $(this).prev().focus();
+                });
+            $('#pkdtfrom, #pkdtto').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                format: 'yyyy-mm-dd'
+            })//show datepicker when clicking on the icon
+                .next().on(ace.click_event, function () {
+                    $(this).prev().focus();
+                });
+
+            $('#BirthDay, #BirthDay').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                format: 'yyyy-mm-dd'
+            })//show datepicker when clicking on the icon
+                .next().on(ace.click_event, function () {
+                    $(this).prev().focus();
+                });
+
+        });
+
+        $(document).ready(function () {
+
+            $(".tooltip-detail, .tooltip-edit, .tooltip-delete").tooltip({
+                show: {
+                    effect: "slideDown",
+                    delay: 250
+                }
+            });
+
+            $('.scrollable-horizontal').each(function () {
+                var $this = $(this);
+                $(this).ace_scroll(
+                    {
+                        horizontal: true,
+                        //styleClass: 'scroll-top',//show the scrollbars on top(default is bottom)
+                        size: $this.attr('data-size') || 6500,
+                        mouseWheelLock: true
+                    }
+                ).css({ 'padding-top': 0 });
+            });
+        });
+        $('.scrollable').each(function () {
+            var $this = $(this);
+            $(this).ace_scroll({
+                //size: 500,
+                size: $this.attr('data-size') || 1000,
+                mouseWheelLock: true,
+                //styleClass: 'scroll-left scroll-margin scroll-thin scroll-dark scroll-light no-track scroll-visible'
+            });
+        });
+    </script>*@
+
+
+}
